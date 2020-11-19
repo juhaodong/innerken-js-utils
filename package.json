@@ -1,9 +1,8 @@
 {
   "name": "innerken-js-utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/index.js",
-  "module": "src/index.js",
   "types": "IKUtils.d.ts",
   "scripts": {
     "build": "./node_modules/.bin/babel src -d dist",
