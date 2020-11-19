@@ -2,9 +2,13 @@
   "name": "innerken-js-utils",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "types": "hillo.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/babel src -d dist",
+    "test": "node index.js",
+    "update": "npm run build && git add . && release-it --ci"
   },
   "keywords": [],
   "author": "",
@@ -29,5 +33,12 @@
     "np": "^6.2.3",
     "qs": "^6.9.1",
     "sweetalert2": "^9.10.12"
+  },
+  "release-it": {
+    "github.release": true,
+    "git": {
+      "commitMessage": "hillo: release v${version}",
+      "requireCleanWorkingDir": false
+    }
   }
 }

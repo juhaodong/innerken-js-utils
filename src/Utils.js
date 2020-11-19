@@ -15,8 +15,11 @@ const Toast = Swal.mixin({
 /**
  * @param {string|HTMLElement|JQuery} title
  * @param {string} content
+ * @param callback
+ * @param failCallback
  */
-export function showConfirm (title = 'Bist du sicher?', content = 'Sie dürfen dies nicht wieder rückgängig machen!', callback, failCallback) {
+export function showConfirm (title = 'Bist du sicher?', content = 'Sie dürfen dies nicht wieder rückgängig machen!',
+                             callback, failCallback) {
   Swal.fire({
     title: title,
     text: content,
