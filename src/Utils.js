@@ -208,8 +208,8 @@ export function safeCallFunction (on, func, ...args) {
   return safeCallFunction(this, showError, ('Calling a Invalid Function'))
 }
 
-export function play () {
-  const audio = new Audio('http://i.cloudup.com/E021I9zUG3.m4a')
+export function play (url) {
+  const audio = new Audio(url ? url : 'http://i.cloudup.com/E021I9zUG3.m4a')
   audio.play()
 }
 
