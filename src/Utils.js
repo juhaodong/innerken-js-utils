@@ -183,7 +183,6 @@ export async function wait (time) {
 }
 
 export const ValidateRules = {
-
   Email: [
     v => !!v || 'E-mail is required',
     v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -193,7 +192,7 @@ export const ValidateRules = {
 
 /**
  * @param item
- * @param {number} key
+ * @param {string} key
  */
 export function checkKeyExist (item, key) {
   return !!item[key]
