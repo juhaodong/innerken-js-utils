@@ -8,11 +8,11 @@ export interface IKUtils{
     deepCopy(target:object):object,
     hideLoading(success:number),
     showLoading(canCancel:boolean),
-    showError(content:string, title?:string),
-    toast(title:string, type:string),
-    showConfirm(content:string, title?:string ),
+    showError(content?:string, title?:string),
+    toast(title?:string, type?:string),
+    showConfirm(content?:string, title?:string ),
     checkKeyExist(item, key:string):boolean,
-    safeCallFunction(on:object, func, args?:string):function, //not sure
+    safeCallFunction(on:object, func, args:string):function, //not sure
     extend(target:object, args):object, //not sure
     toggleElement(el:object, arr:any[]),
     removeElement(el:object, arr:any[]),
