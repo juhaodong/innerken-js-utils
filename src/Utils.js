@@ -19,7 +19,7 @@ const Toast = Swal.mixin({
  * @param failCallback
  */
 export function showConfirm (title = 'Bist du sicher?', content = 'Sie dürfen dies nicht wieder rückgängig machen!',
-                             callback, failCallback) {
+  callback, failCallback) {
   Swal.fire({
     title: title,
     text: content,
@@ -34,12 +34,22 @@ export function showConfirm (title = 'Bist du sicher?', content = 'Sie dürfen d
       if (callback) {
         callback()
       }
-
     } else {
       if (failCallback) {
         failCallback()
       }
     }
+  })
+}
+
+export function showConfirmAsyn (str, title = 'areYouSure') {
+  return Swal.fire({
+    title: title,
+    html: str,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33'
   })
 }
 
