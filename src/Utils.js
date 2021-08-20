@@ -285,5 +285,6 @@ export default {
   removeElement,
   play,
   getQueryString,
-  wait
+  wait,
+  showConfirmAsyn
 }
