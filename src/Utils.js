@@ -9,7 +9,7 @@ const Toast = Swal.mixin({
   onOpen: (toast) => {
     toast.addEventListener('mouseenter', Swal.stopTimer)
     toast.addEventListener('mouseleave', Swal.resumeTimer)
-  },
+  }
 })
 
 /**
@@ -28,7 +28,7 @@ export function showConfirm (title = 'Bist du sicher?', content = 'Sie dürfen d
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     cancelButtonText: 'Zurück',
-    confirmButtonText: 'OK',
+    confirmButtonText: 'OK'
   }).then((result) => {
     if (result.value) {
       if (callback) {
@@ -56,7 +56,7 @@ export function showConfirmAsyn (str, title = 'areYouSure') {
 export function toast (title = 'Erfolgreich!', type = 'success') {
   Toast.fire({
     icon: type,
-    title: title,
+    title: title
   })
 }
 
@@ -69,7 +69,7 @@ export function showError (content = 'Etwas ist schief gelaufen!', title = 'Oops
     icon: 'error',
     title: title,
     text: content,
-    footer: '<a href="https://innerken.com">Wenden Sie sich an den Techniker</a>',
+    footer: '<a href="https://innerken.com">Wenden Sie sich an den Techniker</a>'
   })
 }
 
@@ -79,8 +79,8 @@ export function showError (content = 'Etwas ist schief gelaufen!', title = 'Oops
 export function showLoading (canCancel = false) {
   Swal.fire({
     title: 'Geladen',
-    allowOutsideClick: () => !Swal.isLoading(),
-    allowEscapeKey: canCancel,
+    allowOutsideClick: () => canCancel,
+    allowEscapeKey: canCancel
   })
   Swal.showLoading()
 }
@@ -88,9 +88,8 @@ export function showLoading (canCancel = false) {
 export function hideLoading (success = 1) {
   Swal.hideLoading()
   Swal.fire({
-    icon: success ? 'success' : 'error',
+    icon: success ? 'success' : 'error'
   })
-
 }
 
 /**
@@ -113,7 +112,7 @@ export function deepCopy (target) {
     }
     copiedObjs.push({
       target: target,
-      copyTarget: obj,
+      copyTarget: obj
     })
     Object.keys(target).forEach(key => {
       if (obj[key]) {
@@ -129,7 +128,7 @@ export function deepCopy (target) {
 
 // 获取cookie
 export function getCookie (name) {
-  let arr = {}
+  const arr = {}
   const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
   if (arr === document.cookie.match(reg)) {
     return (arr[2])
@@ -174,11 +173,11 @@ export function trick () {
 }
 
 export function compose () {
-  var args = arguments
-  var start = args.length - 1
+  const args = arguments
+  const start = args.length - 1
   return function () {
-    var i = start
-    var result = args[start].apply(this, arguments)
+    let i = start
+    let result = args[start].apply(this, arguments)
     while (i--) result = args[i].call(this, result)
     return result
   }
@@ -195,9 +194,9 @@ export async function wait (time) {
 export const ValidateRules = {
   Email: [
     v => !!v || 'E-mail is required',
-    v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
   ],
-  NotEmpty: [v => !!v || 'Dieses Feld wird benötigt'],
+  NotEmpty: [v => !!v || 'Dieses Feld wird benötigt']
 }
 
 /**
@@ -221,7 +220,7 @@ export function safeCallFunction (on, func, ...args) {
 }
 
 export function play (url) {
-  const audio = new Audio(url ? url : 'http://i.cloudup.com/E021I9zUG3.m4a')
+  const audio = new Audio(url || 'http://i.cloudup.com/E021I9zUG3.m4a')
   audio.play()
 }
 
