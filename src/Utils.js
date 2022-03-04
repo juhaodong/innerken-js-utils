@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2'
-
+import i18n from '../../../src/i18n'
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -27,8 +27,8 @@ export function showConfirm (title = 'Bist du sicher?', content = 'Sie dürfen d
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    cancelButtonText: 'Zurück',
-    confirmButtonText: 'OK'
+    cancelButtonText: i18n.t('return'),
+    confirmButtonText: i18n.t('OK')
   }).then((result) => {
     if (result.value) {
       if (callback) {
@@ -64,12 +64,13 @@ export function toast (title = 'Erfolgreich!', type = 'success') {
  * @param {string} content
  * @param {string|HTMLElement|JQuery} title
  */
-export function showError (content = 'Etwas ist schief gelaufen!', title = 'Oops...') {
+export function showError (content = 'Etwas ist schief gelaufen!', title = i18n.t('Oops...')) {
   Swal.fire({
     icon: 'error',
     title: title,
     text: content,
-    footer: '<a href="https://innerken.com">Wenden Sie sich an den Techniker</a>'
+    confirmButtonText: i18n.t('OK'),
+    footer: i18n.t('<a href="https://innerken.com">Wenden Sie sich an den Techniker</a>')
   })
 }
 
@@ -78,7 +79,7 @@ export function showError (content = 'Etwas ist schief gelaufen!', title = 'Oops
  */
 export function showLoading (canCancel = false) {
   Swal.fire({
-    title: 'Geladen',
+    title: i18n.t('Geladen'),
     allowOutsideClick: () => canCancel,
     allowEscapeKey: canCancel
   })
