@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import i18n from '@/i18n'
 
 const Toast = Swal.mixin({
   toast: true,
@@ -27,8 +28,8 @@ export function showConfirm (title = 'Bist du sicher?', content = 'Sie dürfen d
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    cancelButtonText: 'Zurück',
-    confirmButtonText: 'OK'
+    cancelButtonText: i18n.t('Zurück'),
+    confirmButtonText: i18n.t('OK')
   }).then((result) => {
     if (result.value) {
       if (callback) {
@@ -49,7 +50,9 @@ export function showConfirmAsyn (str, title = 'areYouSure') {
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33'
+    cancelButtonColor: '#d33',
+    cancelButtonText: i18n.t('Zurück'),
+    confirmButtonText: i18n.t('OK')
   })
 }
 
