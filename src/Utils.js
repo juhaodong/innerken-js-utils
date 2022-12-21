@@ -81,7 +81,7 @@ export function showError (content = 'Etwas ist schief gelaufen!', title = 'Oops
  */
 export function showLoading (canCancel = false) {
   Swal.fire({
-    title: 'Geladen',
+    title: i18n.t('Geladen'),
     allowOutsideClick: () => canCancel,
     allowEscapeKey: canCancel
   })
