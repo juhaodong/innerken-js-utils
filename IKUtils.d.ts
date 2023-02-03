@@ -1,3 +1,7 @@
+export type SweetAlertInput =
+    'text' | 'email' | 'password' | 'number' | 'tel' | 'range' | 'textarea' | 'select' | 'radio' | 'checkbox' |
+    'file' | 'url';
+
 export interface IKUtils {
     ValidateRules,
 
@@ -22,6 +26,8 @@ export interface IKUtils {
     showConfirm(content?: string, title?: string),
 
     showConfirmAsyn(str: string, title?: string),
+
+    showInput(title?: string, inputType?: SweetAlertInput, text?: string): Promise<string>
 
     checkKeyExist(item, key: string): boolean,
 

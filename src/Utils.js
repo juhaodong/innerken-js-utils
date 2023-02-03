@@ -13,6 +13,23 @@ const Toast = Swal.mixin({
   }
 })
 
+export async function showInput (title = 'Please Input ...', inputType = 'number', text = '') {
+  const res = (await Swal.fire({
+    input: inputType,
+    title: title,
+    text: text,
+    icon: 'warning',
+    showCancelButton: true,
+    cancelButtonText: i18n.t('Zurück'),
+    confirmButtonText: i18n.t('OK')
+  }))
+  if (res.isConfirmed) {
+    return res.value
+  } else {
+    return null
+  }
+}
+
 /**
  * @param {string|HTMLElement|JQuery} title
  * @param {string} content
