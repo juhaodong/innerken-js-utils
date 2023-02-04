@@ -307,5 +307,6 @@ export default {
   play,
   getQueryString,
   wait,
-  showConfirmAsyn
+  showConfirmAsyn,
+  showInput,
 }
