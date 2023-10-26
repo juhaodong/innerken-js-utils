@@ -1,5 +1,4 @@
 import Swal from 'sweetalert2'
-import i18n from '@/i18n'
 
 const Toast = Swal.mixin({
   toast: true,
@@ -12,6 +11,12 @@ const Toast = Swal.mixin({
     toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
 })
+
+let i18n = (key) => key
+
+export function init (i) {
+  i18n = i
+}
 
 export async function showInput (title = 'Please Input ...', inputType = 'number', text = '') {
   const res = (await Swal.fire({
@@ -309,4 +314,5 @@ export default {
   wait,
   showConfirmAsyn,
   showInput,
+  init,
 }

@@ -42,6 +42,7 @@ export interface IKUtils {
 
     getQueryString(name: string): string, //not sure
     wait(time): Promise<any> //not sure
+    init(i18n)
 }
 
 export declare const IKUtils: IKUtils
