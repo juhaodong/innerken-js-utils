@@ -1,6 +1,6 @@
 {
   "name": "innerken-js-utils",
-  "version": "1.0.18",
+  "version": "2.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "IKUtils.d.ts",
