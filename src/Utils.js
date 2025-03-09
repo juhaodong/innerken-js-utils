@@ -291,8 +291,51 @@ function getQueryString (name) {
     (new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || ['', ''])[1].replace(/\+/g, '%20')) || null
 }
 
+/**
+ * 将对象编码为 URL 安全的 Base64 字符串
+ * @param {object} obj 要编码的对象
+ * @returns {string} URL 安全的 Base64 编码字符串
+ */
+function base64UrlEncode (obj) {
+  // 首先将对象序列化为 JSON 字符串
+  const jsonString = JSON.stringify(obj)
+
+  // 然后使用 btoa 进行标准的 Base64 编码
+  const base64 = btoa(unescape(encodeURIComponent(jsonString)))
+
+  // 然后将 Base64 编码中的 '+'、'/' 和 '=' 替换为 URL 安全的字符
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+}
+
+/**
+ * 将 URL 安全的 Base64 字符串解码为原始对象
+ * @param {string} base64UrlStr URL 安全的 Base64 编码字符串
+ * @returns {object} 解码后的对象
+ */
+function base64UrlDecode (base64UrlStr) {
+  // 首先将 URL 安全的字符 '-' 和 '_' 替换回 Base64 的 '+' 和 '/'
+  let base64 = base64UrlStr.replace(/-/g, '+').replace(/_/g, '/')
+
+  // 确保 Base64 字符串的长度是 4 的倍数，如果不是，则添加 '=' 填充字符
+  while (base64.length % 4) {
+    base64 += '='
+  }
+
+  // 使用 atob 进行 Base64 解码
+  try {
+    const jsonString = decodeURIComponent(escape(atob(base64)))
+    // 将 JSON 字符串解析为 JavaScript 对象
+    return JSON.parse(jsonString)
+  } catch (e) {
+    console.error('解码失败：', e)
+    return null
+  }
+}
+
 export default {
   ValidateRules,
+  base64UrlDecode,
+  base64UrlEncode,
   compose,
   trick,
   delCookie,

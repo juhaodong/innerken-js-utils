@@ -1,49 +1,89 @@
 export type SweetAlertInput =
-    'text' | 'email' | 'password' | 'number' | 'tel' | 'range' | 'textarea' | 'select' | 'radio' | 'checkbox' |
-    'file' | 'url';
+    | 'text'
+    | 'email'
+    | 'password'
+    | 'number'
+    | 'tel'
+    | 'range'
+    | 'textarea'
+    | 'select'
+    | 'radio'
+    | 'checkbox'
+    | 'file'
+    | 'url';
 
 export interface IKUtils {
-    ValidateRules,
+    ValidateRules: {
+        Email: Array<(v: string) => boolean | string>;
+        NotEmpty: Array<(v: string) => boolean | string>;
+    };
 
-    compose(): string, //not sure return value
-    trick,
+    compose: (...funcs: Array<(...args: any[]) => any>) => (...args: any[]) => any;
+    trick: () => string;
 
-    delCookie(name),
+    delCookie: (name: string) => void;
 
-    setCookie(cName, value: string, expireDays: number),
+    setCookie: (cName: string, value: string, expireDays: number) => void;
 
-    getCookie(name): string, //not sure
-    deepCopy(target: object): object,
+    getCookie: (name: string) => string | null;
 
-    hideLoading(success: number),
+    deepCopy: <T extends object>(target: T) => T;
 
-    showLoading(canCancel: boolean),
+    hideLoading: (success?: number) => void;
 
-    showError(content?: string, title?: string),
+    showLoading: (canCancel?: boolean) => void;
 
-    toast(title?: string, type?: string),
+    showError: (content?: string, title?: string) => void;
 
-    showConfirm(content?: string, title?: string),
+    toast: (title?: string, type?: 'success' | 'error' | 'info' | 'warning') => void;
 
-    showConfirmAsyn(str: string, title?: string),
+    showConfirm: (
+        title?: string,
+        content?: string,
+        callback?: () => void,
+        failCallback?: () => void
+    ) => void;
 
-    showInput(title?: string, inputType?: SweetAlertInput, text?: string): Promise<string>
+    showConfirmAsyn: (
+        str: string,
+        title?: string
+    ) => Promise<{ value?: any; dismiss?: boolean }>;
 
-    checkKeyExist(item, key: string): boolean,
+    showInput: (
+        title?: string,
+        inputType?: SweetAlertInput,
+        text?: string
+    ) => Promise<string | null>;
 
-    safeCallFunction(on: object, func, ...args),
+    checkKeyExist: (item: object, key: string) => boolean;
 
-    extend(target: object, args): object, //not sure
-    toggleElement(el: object, arr: any[]),
+    safeCallFunction: (
+        on: object,
+        func: (...args: any[]) => any,
+        ...args: any[]
+    ) => any;
 
-    removeElement(el: object, arr: any[]),
+    extend: <T extends object, U extends object>(
+        target: T,
+        ...args: U[]
+    ) => T & U;
 
-    play(url?: string),
+    toggleElement: <T>(el: T, arr: T[]) => void;
 
-    getQueryString(name: string): string, //not sure
-    wait(time): Promise<any> //not sure
-    init(i18n)
+    removeElement: <T>(el: T, arr: T[]) => void;
+
+    play: (url?: string) => void;
+
+    getQueryString: (name: string) => string | null;
+
+    wait: (time: number) => Promise<void>;
+
+    init: (i18n: { t: (key: string) => string }) => void;
+
+    base64UrlEncode: (obj: object) => string;
+
+    base64UrlDecode: (base64UrlStr: string) => object | null;
 }
 
-export declare const IKUtils: IKUtils
-export default IKUtils
+export declare const IKUtils: IKUtils;
+export default IKUtils;
